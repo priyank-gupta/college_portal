@@ -1,0 +1,34 @@
+<%= form_for(@grade_class) do |f| %>
+  <% if @grade_class.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@grade_class.errors.count, "error") %> prohibited this grade_class from being saved:</h2>
+
+      <ul>
+      <% @grade_class.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <fieldset>
+      <legend>Subjects</legend>
+      <% subject_ids = @grade_class.subject_ids %>
+      <% @subjects.each do |subject| %>
+        <p>
+          <%= check_box_tag 'grade_class[subject_ids][]', subject.id, subject_ids.include?(subject.id) %>&nbsp;
+          <%= subject.name %>
+        </p>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

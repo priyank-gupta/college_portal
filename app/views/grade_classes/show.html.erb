@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @grade_class.name %>
+</p>
+<p>
+  <strong>Subject:</strong>
+  <%= @grade_class.subject_names.join(', ') %>
+</p>
+
+<%= link_to 'Edit', edit_grade_class_path(@grade_class) %> |
+<%= link_to 'Back', grade_classes_path %>
